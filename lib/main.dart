@@ -35,6 +35,8 @@ class MyHomePage extends StatelessWidget {
       'assets/10_Days_of_Venus_and_Jupiter.jpeg'
     ];
 
+    var items = ItemsGenerator();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("STYLiSH"),
@@ -68,9 +70,9 @@ class MyHomePage extends StatelessWidget {
           Expanded(
               child: Row(
             children: [
-              ItemList(imageAssetPaths: imageAssetPaths),
-              ItemList(imageAssetPaths: imageAssetPaths),
-              ItemList(imageAssetPaths: imageAssetPaths)
+              ItemList(items: items.list1),
+              ItemList(items: items.list2),
+              ItemList(items: items.list3)
             ],
           )),
         ],
@@ -86,12 +88,12 @@ class ItemsGenerator {
           ItemInfo('UNIQLO Coat', 323, 'assets/JupiterVenus_Luy_960.jpg'));
   List<ItemInfo> list2 = List<ItemInfo>.generate(
       20,
-      (index) => ItemInfo('Adidas Coat', 250,
+      (index) => ItemInfo('Adidas Shoes', 250,
           'assets/VenusJupiterSky_Tumino_1080_annotated.jpg'));
   List<ItemInfo> list3 = List<ItemInfo>.generate(
       20,
       (index) => ItemInfo(
-          'Nike Coat', 800, 'assets/10_Days_of_Venus_and_Jupiter.jpeg'));
+          'Nike Hat', 800, 'assets/10_Days_of_Venus_and_Jupiter.jpeg'));
 }
 
 class ItemInfo {
@@ -103,12 +105,9 @@ class ItemInfo {
 }
 
 class ItemList extends StatelessWidget {
-  const ItemList({
-    super.key,
-    required this.imageAssetPaths,
-  });
+  const ItemList({super.key, required this.items});
 
-  final List<String> imageAssetPaths;
+  final List<ItemInfo> items;
 
   @override
   Widget build(BuildContext context) {
@@ -118,16 +117,11 @@ class ItemList extends StatelessWidget {
       shrinkWrap: true,
       padding: const EdgeInsets.all(20),
       children: [
-        for (var imagePath in imageAssetPaths)
-          Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(15.0),
-              child: Image.asset(
-                imagePath,
-                width: 200,
-              ),
-            ),
+        for (var item in items)
+          ListTile(
+            title: Text(item.title),
+            subtitle: Text('NT\$${item.price}'),
+            leading: Image.asset(item.imagePath, width: 100),
           )
       ],
     ));
