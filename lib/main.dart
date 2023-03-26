@@ -15,15 +15,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.grey,
       ),
-      home: const MyHomePage(
-        title: "STYLiSH",
-      ),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key, required title});
+  const MyHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +37,8 @@ class MyHomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("STYLiSH"),
-        titleTextStyle:
-            TextStyle(fontSize: 28.0, color: theme.appBarTheme.foregroundColor),
+        title: Image.asset('assets/stylish_logo.png',
+            width: 150, fit: BoxFit.cover),
         backgroundColor: theme.appBarTheme.backgroundColor,
       ),
       body: Column(
