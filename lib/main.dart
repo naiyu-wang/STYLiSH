@@ -70,9 +70,9 @@ class MyHomePage extends StatelessWidget {
           Expanded(
               child: Row(
             children: [
-              ItemList(items: items.list1),
-              ItemList(items: items.list2),
-              ItemList(items: items.list3)
+              ItemList(category: 'UNIQLO', items: items.list1),
+              ItemList(category: 'Adidas', items: items.list2),
+              ItemList(category: 'Nike', items: items.list3)
             ],
           )),
         ],
@@ -105,8 +105,9 @@ class ItemInfo {
 }
 
 class ItemList extends StatelessWidget {
-  const ItemList({super.key, required this.items});
+  const ItemList({super.key, required this.category, required this.items});
 
+  final String category;
   final List<ItemInfo> items;
 
   @override
@@ -117,6 +118,10 @@ class ItemList extends StatelessWidget {
       shrinkWrap: true,
       padding: const EdgeInsets.all(20),
       children: [
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: Text(category),
+        ),
         for (var item in items)
           Padding(
             padding: const EdgeInsets.all(5.0),
