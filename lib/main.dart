@@ -42,19 +42,28 @@ class MyHomePage extends StatelessWidget {
             TextStyle(fontSize: 28.0, color: theme.appBarTheme.foregroundColor),
         backgroundColor: theme.appBarTheme.backgroundColor,
       ),
-      body: ListView(
-        scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.all(20),
+      body: Column(
         children: [
-          for (var imagePath in imageAssetPaths)
-            Image.asset(imagePath, width: 500),
-          // Card(
-          //   color: theme.colorScheme.background,
-          //   child: Padding(
-          //     padding: const EdgeInsets.all(20),
-          //     child: Text(text),
-          //   ),
-          // )
+          SizedBox(
+            height: 500.0,
+            width: double.infinity,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.all(20),
+              children: [
+                for (var imagePath in imageAssetPaths)
+                  Image.asset(imagePath, width: 500),
+              ],
+            ),
+          ),
+          const SizedBox(height: 50.0),
+          Card(
+            color: theme.colorScheme.background,
+            child: const Padding(
+              padding: EdgeInsets.all(20),
+              child: Text('text'),
+            ),
+          )
         ],
       ),
     );
