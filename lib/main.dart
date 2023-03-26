@@ -43,6 +43,7 @@ class MyHomePage extends StatelessWidget {
         backgroundColor: theme.appBarTheme.backgroundColor,
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
               child: ListView(
@@ -51,22 +52,81 @@ class MyHomePage extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             children: [
               for (var imagePath in imageAssetPaths)
-                Padding(
+                SizedBox(
+                  height: 300,
+                  child: Padding(
                     padding: const EdgeInsets.all(5.0),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10.0),
-                      child: Image.asset(imagePath, width: 500),
-                    ))
+                      borderRadius: BorderRadius.circular(15.0),
+                      child: Image.asset(imagePath),
+                    ),
+                  ),
+                )
             ],
           )),
-          const SizedBox(height: 50.0),
-          Card(
-            color: theme.colorScheme.background,
-            child: const Padding(
-              padding: EdgeInsets.all(20),
-              child: Text('text'),
-            ),
-          ),
+          const SizedBox(height: 10.0),
+          Expanded(
+              child: Row(
+            children: [
+              Expanded(
+                  child: ListView(
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                padding: const EdgeInsets.all(20),
+                children: [
+                  for (var imagePath in imageAssetPaths)
+                    Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(15.0),
+                        child: Image.asset(
+                          imagePath,
+                          width: 200,
+                        ),
+                      ),
+                    )
+                ],
+              )),
+              Expanded(
+                  child: ListView(
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                padding: const EdgeInsets.all(20),
+                children: [
+                  for (var imagePath in imageAssetPaths)
+                    Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(15.0),
+                        child: Image.asset(
+                          imagePath,
+                          width: 200,
+                        ),
+                      ),
+                    )
+                ],
+              )),
+              Expanded(
+                  child: ListView(
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                padding: const EdgeInsets.all(20),
+                children: [
+                  for (var imagePath in imageAssetPaths)
+                    Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(15.0),
+                        child: Image.asset(
+                          imagePath,
+                          width: 200,
+                        ),
+                      ),
+                    )
+                ],
+              ))
+            ],
+          )),
         ],
       ),
     );
