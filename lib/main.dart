@@ -44,18 +44,21 @@ class MyHomePage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          SizedBox(
-            height: 500.0,
-            width: double.infinity,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.all(20),
-              children: [
-                for (var imagePath in imageAssetPaths)
-                  Image.asset(imagePath, width: 500),
-              ],
-            ),
-          ),
+          Expanded(
+              child: ListView(
+            scrollDirection: Axis.horizontal,
+            shrinkWrap: true,
+            padding: const EdgeInsets.all(20),
+            children: [
+              for (var imagePath in imageAssetPaths)
+                Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10.0),
+                      child: Image.asset(imagePath, width: 500),
+                    ))
+            ],
+          )),
           const SizedBox(height: 50.0),
           Card(
             color: theme.colorScheme.background,
@@ -63,7 +66,7 @@ class MyHomePage extends StatelessWidget {
               padding: EdgeInsets.all(20),
               child: Text('text'),
             ),
-          )
+          ),
         ],
       ),
     );
