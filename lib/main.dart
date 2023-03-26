@@ -84,8 +84,8 @@ class MyHomePage extends StatelessWidget {
 class ItemsGenerator {
   List<ItemInfo> list1 = List<ItemInfo>.generate(
       20,
-      (index) =>
-          ItemInfo('UNIQLO Coat', 323, 'assets/JupiterVenus_Luy_960.jpg'));
+      (index) => ItemInfo('UNIQLO Coat', 323,
+          'assets/ZodiacalPlanets_Merzlyakov_960_annotated.jpg'));
   List<ItemInfo> list2 = List<ItemInfo>.generate(
       20,
       (index) => ItemInfo('Adidas Shoes', 250,
@@ -118,10 +118,17 @@ class ItemList extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       children: [
         for (var item in items)
-          ListTile(
-            title: Text(item.title),
-            subtitle: Text('NT\$${item.price}'),
-            leading: Image.asset(item.imagePath, width: 100),
+          Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: ListTile(
+                title: Text(item.title),
+                subtitle: Text('NT\$${item.price}'),
+                leading: Image.asset(item.imagePath),
+                contentPadding: const EdgeInsets.all(0.0),
+                shape: RoundedRectangleBorder(
+                  side: const BorderSide(color: Colors.black, width: 1),
+                  borderRadius: BorderRadius.circular(5),
+                )),
           )
       ],
     ));
