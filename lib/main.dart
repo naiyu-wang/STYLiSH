@@ -68,67 +68,45 @@ class MyHomePage extends StatelessWidget {
           Expanded(
               child: Row(
             children: [
-              Expanded(
-                  child: ListView(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                padding: const EdgeInsets.all(20),
-                children: [
-                  for (var imagePath in imageAssetPaths)
-                    Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(15.0),
-                        child: Image.asset(
-                          imagePath,
-                          width: 200,
-                        ),
-                      ),
-                    )
-                ],
-              )),
-              Expanded(
-                  child: ListView(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                padding: const EdgeInsets.all(20),
-                children: [
-                  for (var imagePath in imageAssetPaths)
-                    Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(15.0),
-                        child: Image.asset(
-                          imagePath,
-                          width: 200,
-                        ),
-                      ),
-                    )
-                ],
-              )),
-              Expanded(
-                  child: ListView(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                padding: const EdgeInsets.all(20),
-                children: [
-                  for (var imagePath in imageAssetPaths)
-                    Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(15.0),
-                        child: Image.asset(
-                          imagePath,
-                          width: 200,
-                        ),
-                      ),
-                    )
-                ],
-              ))
+              ItemList(imageAssetPaths: imageAssetPaths),
+              ItemList(imageAssetPaths: imageAssetPaths),
+              ItemList(imageAssetPaths: imageAssetPaths)
             ],
           )),
         ],
       ),
     );
+  }
+}
+
+class ItemList extends StatelessWidget {
+  const ItemList({
+    super.key,
+    required this.imageAssetPaths,
+  });
+
+  final List<String> imageAssetPaths;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+        child: ListView(
+      scrollDirection: Axis.vertical,
+      shrinkWrap: true,
+      padding: const EdgeInsets.all(20),
+      children: [
+        for (var imagePath in imageAssetPaths)
+          Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(15.0),
+              child: Image.asset(
+                imagePath,
+                width: 200,
+              ),
+            ),
+          )
+      ],
+    ));
   }
 }
