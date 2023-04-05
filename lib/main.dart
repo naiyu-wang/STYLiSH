@@ -45,22 +45,20 @@ class MyHomePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
-              child: ListView(
-            scrollDirection: Axis.horizontal,
-            shrinkWrap: true,
-            padding: const EdgeInsets.all(20),
-            children: [
-              for (var imagePath in imageAssetPaths)
-                Container(
-                  height: 300,
-                  padding: const EdgeInsets.all(5.0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(15.0),
-                    child: Image.asset(imagePath),
-                  ),
-                )
-            ],
-          )),
+              child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return Container(
+                        height: 300,
+                        padding: const EdgeInsets.all(10.0),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(15.0),
+                          child: Image.asset(imageAssetPaths[index]),
+                        ));
+                  },
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(width: 5.0),
+                  itemCount: imageAssetPaths.length)),
           const SizedBox(height: 10.0),
           Expanded(
               child: Row(
