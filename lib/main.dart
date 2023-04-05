@@ -108,29 +108,22 @@ class ItemList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-        child: ListView(
-      scrollDirection: Axis.vertical,
-      shrinkWrap: true,
-      padding: const EdgeInsets.all(20),
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(20),
-          child: Text(category),
-        ),
-        for (var item in items)
-          Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: ListTile(
-                title: Text(item.title),
-                subtitle: Text('NT\$${item.price}'),
-                leading: Image.asset(item.imagePath),
-                contentPadding: const EdgeInsets.all(0.0),
-                shape: RoundedRectangleBorder(
-                  side: const BorderSide(color: Colors.black, width: 1),
-                  borderRadius: BorderRadius.circular(5),
-                )),
-          )
-      ],
-    ));
+        child: ListView.separated(
+            physics: const BouncingScrollPhysics(),
+            shrinkWrap: true,
+            scrollDirection: Axis.vertical,
+            itemCount: items.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                  title: Text(items[index].title),
+                  subtitle: Text('NT\$${items[index].price}'),
+                  leading: Image.asset(items[index].imagePath),
+                  contentPadding: const EdgeInsets.all(0.0),
+                  shape: RoundedRectangleBorder(
+                    side: const BorderSide(color: Colors.black, width: 1),
+                    borderRadius: BorderRadius.circular(5),
+                  ));
+            },
+            separatorBuilder: (context, index) => const SizedBox(height: 10)));
   }
 }
