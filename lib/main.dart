@@ -127,7 +127,9 @@ class ItemList extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ItemDetailPage()));
+                          builder: (context) => ItemDetailPage(
+                                itemInfo: items[index],
+                              )));
                 },
               );
             },
@@ -138,8 +140,12 @@ class ItemList extends StatelessWidget {
 ///////
 
 class ItemDetailPage extends StatelessWidget {
+  const ItemDetailPage({super.key, required this.itemInfo});
+
+  final ItemInfo itemInfo;
+
   @override
   Widget build(BuildContext context) {
-    return const Text('data');
+    return Text(itemInfo.title);
   }
 }
