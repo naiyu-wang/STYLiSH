@@ -51,14 +51,12 @@ class MyHomePage extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             children: [
               for (var imagePath in imageAssetPaths)
-                SizedBox(
+                Container(
                   height: 300,
-                  child: Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(15.0),
-                      child: Image.asset(imagePath),
-                    ),
+                  padding: const EdgeInsets.all(5.0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(15.0),
+                    child: Image.asset(imagePath),
                   ),
                 )
             ],
