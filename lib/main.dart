@@ -115,15 +115,31 @@ class ItemList extends StatelessWidget {
             itemCount: items.length,
             itemBuilder: (context, index) {
               return ListTile(
-                  title: Text(items[index].title),
-                  subtitle: Text('NT\$${items[index].price}'),
-                  leading: Image.asset(items[index].imagePath),
-                  contentPadding: const EdgeInsets.all(0.0),
-                  shape: RoundedRectangleBorder(
-                    side: const BorderSide(color: Colors.black, width: 1),
-                    borderRadius: BorderRadius.circular(5),
-                  ));
+                title: Text(items[index].title),
+                subtitle: Text('NT\$${items[index].price}'),
+                leading: Image.asset(items[index].imagePath),
+                contentPadding: const EdgeInsets.all(0.0),
+                shape: RoundedRectangleBorder(
+                  side: const BorderSide(color: Colors.black, width: 1),
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ItemDetailPage()));
+                },
+              );
             },
             separatorBuilder: (context, index) => const SizedBox(height: 10)));
+  }
+}
+
+///////
+
+class ItemDetailPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return const Text('data');
   }
 }
