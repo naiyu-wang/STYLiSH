@@ -64,7 +64,9 @@ class MyHomePage extends StatelessWidget {
               child: Row(
             children: [
               ItemList(category: 'UNIQLO', items: items.list1),
+              const SizedBox(width: 10.0),
               ItemList(category: 'Adidas', items: items.list2),
+              const SizedBox(width: 10.0),
               ItemList(category: 'Nike', items: items.list3)
             ],
           )),
@@ -105,7 +107,7 @@ class ItemList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return Flexible(
         child: ListView.separated(
             physics: const BouncingScrollPhysics(),
             shrinkWrap: true,
