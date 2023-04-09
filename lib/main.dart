@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Program App',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueGrey),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
       ),
       home: const MyHomePage(),
     );
@@ -37,12 +37,7 @@ class MyHomePage extends StatelessWidget {
     var items = ItemsGenerator();
 
     return Scaffold(
-      backgroundColor: theme.colorScheme.primaryContainer,
-      appBar: AppBar(
-        title: Image.asset('assets/stylish_logo.png',
-            width: 150, fit: BoxFit.cover),
-        backgroundColor: theme.appBarTheme.backgroundColor,
-      ),
+      appBar: MainAppBar(appBar: AppBar(), theme: theme),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -76,6 +71,27 @@ class MyHomePage extends StatelessWidget {
       ),
     );
   }
+}
+
+class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final AppBar appBar;
+  final ThemeData theme;
+
+  const MainAppBar({super.key, required this.appBar, required this.theme});
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      title:
+          Image.asset('assets/stylish_logo.png', width: 150, fit: BoxFit.cover),
+      elevation: 5.0,
+      backgroundColor: theme.appBarTheme.backgroundColor,
+      shadowColor: theme.appBarTheme.shadowColor,
+    );
+  }
+
+  @override
+  Size get preferredSize => Size.fromHeight(appBar.preferredSize.height);
 }
 
 class ItemsGenerator {
@@ -163,7 +179,7 @@ class ItemDetailPage extends StatelessWidget {
     ];
 
     return Scaffold(
-        backgroundColor: theme.colorScheme.primaryContainer,
+        appBar: MainAppBar(appBar: AppBar(), theme: theme),
         body: SingleChildScrollView(
             child: Column(
           children: [
