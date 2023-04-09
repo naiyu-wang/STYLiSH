@@ -156,15 +156,23 @@ class ItemDetailPage extends StatelessWidget {
       color: theme.colorScheme.primary,
     );
 
+    List<String> imageAssetPaths = [
+      'assets/JupiterVenus_Luy_960.jpg',
+      'assets/VenusJupiterSky_Tumino_1080_annotated.jpg',
+      'assets/10_Days_of_Venus_and_Jupiter.jpeg'
+    ];
+
     return Scaffold(
         backgroundColor: theme.colorScheme.primaryContainer,
-        body: Column(
+        body: SingleChildScrollView(
+            child: Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(width: 500, child: Image.asset(itemInfo.imagePath)),
                 Container(
+                  alignment: Alignment.center,
                   margin: const EdgeInsets.all(10.0),
                   width: 300,
                   child: Column(
@@ -194,14 +202,49 @@ class ItemDetailPage extends StatelessWidget {
                           title: 'amount',
                           options: 'options',
                           infoStyle: infoStyle,
-                          theme: theme)
+                          theme: theme),
+                      const SizedBox(
+                        width: double.infinity,
+                        height: 5.0,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 50,
+                        child: FilledButton(
+                            onPressed: () {
+                              print('button pressed');
+                            },
+                            style: FilledButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(0.0))),
+                            child: const Text('Please Select Size')),
+                      ),
+                      Container(
+                        width: double.infinity,
+                        height: 300.0,
+                        margin: const EdgeInsets.all(5.0),
+                        child: const Text(
+                            'Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Donec sed odio dui. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Aenean lacinia bibendum nulla sed consectetur. Nulla vitae elit libero, a pharetra augue. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis risus eget urna mollis ornare vel eu leo.',
+                            textAlign: TextAlign.left),
+                      )
                     ],
                   ),
                 ),
               ],
             ),
+            Container(
+                margin: const EdgeInsets.all(10.0),
+                width: double.infinity,
+                height: 1.0,
+                color: theme.colorScheme.primary),
+            const Text(
+                'Cras mattis consectetur purus sit amet fermentum. Nullam id dolor id nibh ultricies vehicula ut id elit.'),
+            for (var path in imageAssetPaths)
+              Container(
+                  padding: const EdgeInsets.symmetric(vertical: 5.0),
+                  child: Image.asset(path))
           ],
-        ));
+        )));
   }
 }
 
