@@ -1,10 +1,29 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:stylish/elements.dart';
+import 'package:stylish/productInfo.dart';
+import 'package:stylish/staticResource.dart';
+import 'package:stylish/webService.dart';
 import 'itemDetail.dart';
 import 'itemInfo.dart';
+import 'package:dio/dio.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final WebService _webService = WebService();
+
+  List<ProductInfo> _menProductList = List<ProductInfo>.empty();
+  List<ProductInfo> _womenProductList = List<ProductInfo>.empty();
+  List<ProductInfo> _accessoriesProductList = List<ProductInfo>.empty();
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +37,13 @@ class MyHomePage extends StatelessWidget {
 
     var items = ItemsGenerator();
 
+    _webService.getProductList(ProductType.men, (list) {
+      print(list);
+      setState(() {
+        _menProductList = list;
+      });
+    });
+
     return Scaffold(
       appBar: MainAppBar(appBar: AppBar(), theme: theme),
       body: Column(
@@ -28,7 +54,56 @@ class MyHomePage extends StatelessWidget {
           Expanded(
               child: Row(
             children: [
-              ItemList(category: '男裝', items: items.list1),
+              // ItemList(category: '男裝', items: items.list1),
+              Expanded(
+                  child: Column(
+                children: [
+                  Center(
+                      child: InkWell(
+                    onTap: () {},
+                    child: const Text(
+                      '男裝',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  )),
+                  Expanded(
+                    child: ListView.separated(
+                        physics: const BouncingScrollPhysics(),
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        itemCount: _menProductList.length,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            title: Text(_menProductList[index].title),
+                            subtitle:
+                                Text('NT\$${_menProductList[index].price}'),
+                            leading: CachedNetworkImage(
+                              fit: BoxFit.fill,
+                              imageUrl: _menProductList[index].mainImagePath,
+                              errorWidget: ((context, url, error) =>
+                                  const Icon(Icons.error)),
+                            ),
+                            contentPadding: const EdgeInsets.all(0.0),
+                            shape: RoundedRectangleBorder(
+                              side: const BorderSide(
+                                  color: Colors.black, width: 1),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ItemDetailPage(
+                                            itemInfo: items.list1[index],
+                                          )));
+                            },
+                          );
+                        },
+                        separatorBuilder: (context, index) =>
+                            const SizedBox(height: 10)),
+                  )
+                ],
+              )),
               const SizedBox(width: 10.0),
               ItemList(category: '女裝', items: items.list2),
               const SizedBox(width: 10.0),
