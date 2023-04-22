@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:stylish/elements.dart';
 import 'package:stylish/productInfo.dart';
 import 'package:stylish/staticResource.dart';
@@ -14,6 +15,22 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  static const platform = MethodChannel('stylish.flutter/homePage');
+
+  // Get battery level.
+  String _batteryLevel = 'Unknown battery level.';
+
+  Future<String> _getBatteryLevel() async {
+    String batteryLevel;
+    try {
+      final int result = await platform.invokeMethod('getBatteryLevel');
+      batteryLevel = 'Battery level at $result % .';
+    } on PlatformException catch (e) {
+      batteryLevel = "Failed to get battery level: '${e.message}'.";
+    }
+    return batteryLevel;
+  }
+
   final WebService _webService = WebService();
 
   bool dataDidSet = false;
@@ -65,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
             margin: const EdgeInsets.all(10.0),
             child: Row(
               children: [
-                ProductList(category: '男裝', products: _menProductList),
+                ProductList(category: _batteryLevel, products: _menProductList),
                 const SizedBox(width: 10.0),
                 ProductList(category: '女裝', products: _womenProductList),
                 const SizedBox(width: 10.0),
