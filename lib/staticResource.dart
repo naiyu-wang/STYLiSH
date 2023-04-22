@@ -18,3 +18,5 @@ extension ProductTypeExtension on ProductType {
     }
   }
 }
+
+String productDetailAPI = "${apiDomain}products/details";

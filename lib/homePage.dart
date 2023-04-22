@@ -3,7 +3,7 @@ import 'package:stylish/elements.dart';
 import 'package:stylish/productInfo.dart';
 import 'package:stylish/staticResource.dart';
 import 'package:stylish/webService.dart';
-import 'productDetail.dart';
+import 'productDetailPage.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class MyHomePage extends StatefulWidget {
