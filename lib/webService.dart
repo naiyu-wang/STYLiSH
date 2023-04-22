@@ -7,18 +7,10 @@ import 'package:stylish/staticResource.dart';
 class WebService {
   final dio = Dio();
 
-  void request(String api, Function(Response) callback) async {
+  Future<List<ProductInfo>> requestProductList(ProductType type) async {
     Response response;
-    response = await dio.get(api);
-    print(response.data.toString());
-    callback(response);
-  }
-
-  void getProductList(
-      ProductType type, Function(List<ProductInfo>) callback) async {
-    request(type.getAPIValue(), (response) {
-      List<ProductInfo> list = ProductListResponse.fromJson(response.data).list;
-      return list;
-    });
+    response = await dio.get(type.getAPIValue());
+    List<ProductInfo> list = ProductListResponse.fromJson(response.data).list;
+    return Future.value(list);
   }
 }

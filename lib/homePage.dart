@@ -1,14 +1,9 @@
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:stylish/elements.dart';
 import 'package:stylish/productInfo.dart';
 import 'package:stylish/staticResource.dart';
 import 'package:stylish/webService.dart';
-import 'itemDetail.dart';
-import 'itemInfo.dart';
-import 'package:dio/dio.dart';
+import 'productDetail.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -35,14 +30,21 @@ class _MyHomePageState extends State<MyHomePage> {
       'assets/10_Days_of_Venus_and_Jupiter.jpeg'
     ];
 
-    var items = ItemsGenerator();
+    _webService.requestProductList(ProductType.men).then((list) => setState(() {
+          _menProductList = list;
+        }));
 
-    _webService.getProductList(ProductType.men, (list) {
-      print(list);
-      setState(() {
-        _menProductList = list;
-      });
-    });
+    _webService
+        .requestProductList(ProductType.women)
+        .then((list) => setState(() {
+              _womenProductList = list;
+            }));
+
+    _webService
+        .requestProductList(ProductType.accessories)
+        .then((list) => setState(() {
+              _accessoriesProductList = list;
+            }));
 
     return Scaffold(
       appBar: MainAppBar(appBar: AppBar(), theme: theme),
@@ -52,63 +54,17 @@ class _MyHomePageState extends State<MyHomePage> {
           Expanded(child: TopSaleList(imageAssetPaths: imageAssetPaths)),
           const SizedBox(height: 10.0),
           Expanded(
-              child: Row(
-            children: [
-              // ItemList(category: '男裝', items: items.list1),
-              Expanded(
-                  child: Column(
-                children: [
-                  Center(
-                      child: InkWell(
-                    onTap: () {},
-                    child: const Text(
-                      '男裝',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  )),
-                  Expanded(
-                    child: ListView.separated(
-                        physics: const BouncingScrollPhysics(),
-                        shrinkWrap: true,
-                        scrollDirection: Axis.vertical,
-                        itemCount: _menProductList.length,
-                        itemBuilder: (context, index) {
-                          return ListTile(
-                            title: Text(_menProductList[index].title),
-                            subtitle:
-                                Text('NT\$${_menProductList[index].price}'),
-                            leading: CachedNetworkImage(
-                              fit: BoxFit.fill,
-                              imageUrl: _menProductList[index].mainImagePath,
-                              errorWidget: ((context, url, error) =>
-                                  const Icon(Icons.error)),
-                            ),
-                            contentPadding: const EdgeInsets.all(0.0),
-                            shape: RoundedRectangleBorder(
-                              side: const BorderSide(
-                                  color: Colors.black, width: 1),
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => ItemDetailPage(
-                                            itemInfo: items.list1[index],
-                                          )));
-                            },
-                          );
-                        },
-                        separatorBuilder: (context, index) =>
-                            const SizedBox(height: 10)),
-                  )
-                ],
-              )),
-              const SizedBox(width: 10.0),
-              ItemList(category: '女裝', items: items.list2),
-              const SizedBox(width: 10.0),
-              ItemList(category: '配件', items: items.list3)
-            ],
+              child: Container(
+            margin: const EdgeInsets.all(10.0),
+            child: Row(
+              children: [
+                ProductList(category: '男裝', products: _menProductList),
+                const SizedBox(width: 10.0),
+                ProductList(category: '女裝', products: _womenProductList),
+                const SizedBox(width: 10.0),
+                ProductList(category: '配件', products: _accessoriesProductList)
+              ],
+            ),
           )),
         ],
       ),
@@ -142,11 +98,12 @@ class TopSaleList extends StatelessWidget {
   }
 }
 
-class ItemList extends StatelessWidget {
-  const ItemList({super.key, required this.category, required this.items});
+class ProductList extends StatelessWidget {
+  const ProductList(
+      {super.key, required this.category, required this.products});
 
   final String category;
-  final List<ItemInfo> items;
+  final List<ProductInfo> products;
 
   @override
   Widget build(BuildContext context) {
@@ -166,12 +123,20 @@ class ItemList extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               shrinkWrap: true,
               scrollDirection: Axis.vertical,
-              itemCount: items.length,
+              itemCount: products.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text(items[index].title),
-                  subtitle: Text('NT\$${items[index].price}'),
-                  leading: Image.asset(items[index].imagePath),
+                  title: Text(products[index].title),
+                  subtitle: Text('NT\$${products[index].price}'),
+                  leading: SizedBox(
+                    width: 80,
+                    child: CachedNetworkImage(
+                      fit: BoxFit.fitHeight,
+                      imageUrl: products[index].mainImagePath,
+                      errorWidget: ((context, url, error) =>
+                          const Icon(Icons.error)),
+                    ),
+                  ),
                   contentPadding: const EdgeInsets.all(0.0),
                   shape: RoundedRectangleBorder(
                     side: const BorderSide(color: Colors.black, width: 1),
@@ -181,8 +146,8 @@ class ItemList extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => ItemDetailPage(
-                                  itemInfo: items[index],
+                            builder: (context) => ProductDetailPage(
+                                  productInfo: products[index],
                                 )));
                   },
                 );

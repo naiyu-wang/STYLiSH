@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:stylish/productInfo.dart';
 import 'elements.dart';
-import 'itemInfo.dart';
 
-class ItemDetailPage extends StatelessWidget {
-  const ItemDetailPage({super.key, required this.itemInfo});
+class ProductDetailPage extends StatelessWidget {
+  const ProductDetailPage({super.key, required this.productInfo});
 
-  final ItemInfo itemInfo;
+  final ProductInfo productInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -41,17 +41,17 @@ class ItemDetailPage extends StatelessWidget {
                     children: [
                       SizedBox(
                           height: double.infinity,
-                          child: Image.asset(itemInfo.imagePath)),
+                          child: Image.asset(productInfo.mainImagePath)),
                       Expanded(
                           child: Container(
                         alignment: Alignment.center,
                         padding: const EdgeInsets.all(10.0),
                         child: Column(
                           children: [
-                            Text(itemInfo.title, style: titleStyle),
+                            Text(productInfo.title, style: titleStyle),
                             Text(DateTime.now().toString(), style: infoStyle),
                             Text(
-                              'NT\$${itemInfo.price}',
+                              'NT\$${productInfo.price}',
                               style: titleStyle,
                             ),
                             Container(
