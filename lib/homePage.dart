@@ -16,6 +16,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final WebService _webService = WebService();
 
+  bool dataDidSet = false;
   List<ProductInfo> _menProductList = List<ProductInfo>.empty();
   List<ProductInfo> _womenProductList = List<ProductInfo>.empty();
   List<ProductInfo> _accessoriesProductList = List<ProductInfo>.empty();
@@ -30,21 +31,27 @@ class _MyHomePageState extends State<MyHomePage> {
       'assets/10_Days_of_Venus_and_Jupiter.jpeg'
     ];
 
-    _webService.requestProductList(ProductType.men).then((list) => setState(() {
-          _menProductList = list;
-        }));
+    if (!dataDidSet) {
+      Future.wait([
+        _webService.requestProductList(ProductType.men),
+        _webService.requestProductList(ProductType.women),
+        _webService.requestProductList(ProductType.accessories),
+        _getBatteryLevel()
+      ]).then((List responses) {
+        setState(() {
+          _menProductList = responses[0];
+          _womenProductList = responses[1];
+          _accessoriesProductList = responses[2];
 
-    _webService
-        .requestProductList(ProductType.women)
-        .then((list) => setState(() {
-              _womenProductList = list;
-            }));
+          print('MethodChannel -> ${responses[3]}');
+          _batteryLevel = responses[3];
 
-    _webService
-        .requestProductList(ProductType.accessories)
-        .then((list) => setState(() {
-              _accessoriesProductList = list;
-            }));
+          dataDidSet = true;
+        });
+      }).catchError((e) {
+        print('Error -> $e');
+      });
+    }
 
     return Scaffold(
       appBar: MainAppBar(appBar: AppBar(), theme: theme),
