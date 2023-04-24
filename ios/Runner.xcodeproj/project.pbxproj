@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
+		607E445929F6FDCF009C99F7 /* TPDirect.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 607E445829F6FDCE009C99F7 /* TPDirect.xcframework */; };
+		607E445A29F6FDCF009C99F7 /* TPDirect.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 607E445829F6FDCE009C99F7 /* TPDirect.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		607E445C29F6FEED009C99F7 /* StaticResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607E445B29F6FEEC009C99F7 /* StaticResource.swift */; };
+		607E445E29F70017009C99F7 /* TappayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607E445D29F70017009C99F7 /* TappayViewController.swift */; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
 		81A6066419ECE626C2DBE1C7 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5577E9DDD8AB99C20E984211 /* Pods_Runner.framework */; };
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
@@ -23,6 +27,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				607E445A29F6FDCF009C99F7 /* TPDirect.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -35,6 +40,9 @@
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
 		497A262C5257741E5BBF59CE /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
 		5577E9DDD8AB99C20E984211 /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		607E445829F6FDCE009C99F7 /* TPDirect.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = TPDirect.xcframework; path = ../../../../Downloads/TPDirect.xcframework; sourceTree = "<group>"; };
+		607E445B29F6FEEC009C99F7 /* StaticResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticResource.swift; sourceTree = "<group>"; };
+		607E445D29F70017009C99F7 /* TappayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappayViewController.swift; sourceTree = "<group>"; };
 		74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Runner-Bridging-Header.h"; sourceTree = "<group>"; };
 		74858FAE1ED2DC5600515810 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7AFA3C8E1D35360C0083082E /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Release.xcconfig; path = Flutter/Release.xcconfig; sourceTree = "<group>"; };
@@ -54,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				607E445929F6FDCF009C99F7 /* TPDirect.xcframework in Frameworks */,
 				81A6066419ECE626C2DBE1C7 /* Pods_Runner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -64,6 +73,7 @@
 		4DB7CC8583630F788047AC37 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				607E445829F6FDCE009C99F7 /* TPDirect.xcframework */,
 				5577E9DDD8AB99C20E984211 /* Pods_Runner.framework */,
 			);
 			name = Frameworks;
@@ -76,7 +86,6 @@
 				C5FCA078601CB712EDD8D017 /* Pods-Runner.release.xcconfig */,
 				497A262C5257741E5BBF59CE /* Pods-Runner.profile.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -120,6 +129,8 @@
 				1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */,
 				1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */,
 				74858FAE1ED2DC5600515810 /* AppDelegate.swift */,
+				607E445B29F6FEEC009C99F7 /* StaticResource.swift */,
+				607E445D29F70017009C99F7 /* TappayViewController.swift */,
 				74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */,
 			);
 			path = Runner;
@@ -275,7 +286,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
+				607E445C29F6FEED009C99F7 /* StaticResource.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
+				607E445E29F70017009C99F7 /* TappayViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

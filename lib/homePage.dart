@@ -15,21 +15,21 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  static const platform = MethodChannel('stylish.flutter/homePage');
+  // static const platform = MethodChannel('stylish.flutter/homePage');
 
-  // Get battery level.
-  String _batteryLevel = 'Unknown battery level.';
+  // Test: Get battery level. from iOS platform
+  // String _batteryLevel = 'Unknown battery level.';
 
-  Future<String> _getBatteryLevel() async {
-    String batteryLevel;
-    try {
-      final int result = await platform.invokeMethod('getBatteryLevel');
-      batteryLevel = 'Battery level at $result % .';
-    } on PlatformException catch (e) {
-      batteryLevel = "Failed to get battery level: '${e.message}'.";
-    }
-    return batteryLevel;
-  }
+  // Future<String> _getBatteryLevel() async {
+  //   String batteryLevel;
+  //   try {
+  //     final int result = await platform.invokeMethod('getBatteryLevel');
+  //     batteryLevel = 'Battery level at $result % .';
+  //   } on PlatformException catch (e) {
+  //     batteryLevel = "Failed to get battery level: '${e.message}'.";
+  //   }
+  //   return batteryLevel;
+  // }
 
   final WebService _webService = WebService();
 
@@ -53,15 +53,14 @@ class _MyHomePageState extends State<MyHomePage> {
         _webService.requestProductList(ProductType.men),
         _webService.requestProductList(ProductType.women),
         _webService.requestProductList(ProductType.accessories),
-        _getBatteryLevel()
+        // _getBatteryLevel()
       ]).then((List responses) {
         setState(() {
           _menProductList = responses[0];
           _womenProductList = responses[1];
           _accessoriesProductList = responses[2];
 
-          print('MethodChannel -> ${responses[3]}');
-          _batteryLevel = responses[3];
+          // _batteryLevel = responses[3];
 
           dataDidSet = true;
         });
@@ -82,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
             margin: const EdgeInsets.all(10.0),
             child: Row(
               children: [
-                ProductList(category: _batteryLevel, products: _menProductList),
+                ProductList(category: '男裝', products: _menProductList),
                 const SizedBox(width: 10.0),
                 ProductList(category: '女裝', products: _womenProductList),
                 const SizedBox(width: 10.0),

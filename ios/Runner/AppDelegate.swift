@@ -1,5 +1,6 @@
 import UIKit
 import Flutter
+import TPDirect
 
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
@@ -9,6 +10,39 @@ import Flutter
     ) -> Bool {
 
         let controller: FlutterViewController = window?.rootViewController as! FlutterViewController
+
+//        testBatteryChannelFunction(controller)
+
+        getPurchaseResult(controller)
+
+        GeneratedPluginRegistrant.register(with: self)
+
+        TPDSetup.setWithAppId(Int32(TapPayInfo.appId), withAppKey: TapPayInfo.appKey, with: TPDServerType.sandBox)
+
+        return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+    }
+
+    private func getPurchaseResult(_ controller: FlutterViewController) {
+        let purchaseChannel = FlutterMethodChannel(name: "stylish.flutter/productDetailPage",
+                                                  binaryMessenger: controller.binaryMessenger)
+        purchaseChannel.setMethodCallHandler({
+          [weak self] (call: FlutterMethodCall, result: FlutterResult) -> Void in
+          // This method is invoked on the UI thread.
+          guard call.method == "getPurchaseResult" else {
+            result(FlutterMethodNotImplemented)
+            return
+          }
+            self?.openPurchasePage(result: result)
+        })
+    }
+
+    private func openPurchasePage(result: FlutterResult) {
+        // TODO
+    }
+
+    // MARK: - Test
+
+    private func testBatteryChannelFunction(_ controller: FlutterViewController) {
         let batteryChannel = FlutterMethodChannel(name: "stylish.flutter/homePage",
                                                   binaryMessenger: controller.binaryMessenger)
         batteryChannel.setMethodCallHandler({
@@ -20,9 +54,6 @@ import Flutter
           }
           self?.receiveBatteryLevel(result: result)
         })
-
-        GeneratedPluginRegistrant.register(with: self)
-        return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 
     private func receiveBatteryLevel(result: FlutterResult) {
