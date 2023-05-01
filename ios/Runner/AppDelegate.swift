@@ -1,6 +1,7 @@
 import UIKit
 import Flutter
 import TPDirect
+import GoogleMaps
 
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
@@ -18,6 +19,8 @@ import TPDirect
         GeneratedPluginRegistrant.register(with: self)
 
         TPDSetup.setWithAppId(Int32(TapPayInfo.appId), withAppKey: TapPayInfo.appKey, with: TPDServerType.sandBox)
+
+        GMSServices.provideAPIKey("AIzaSyBxFLATIxDioWTJFKrZ56ibWNxbuJNrcEY")
 
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }

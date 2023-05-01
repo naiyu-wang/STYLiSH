@@ -70,6 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: MainAppBar(appBar: AppBar(), theme: theme),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
