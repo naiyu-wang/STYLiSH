@@ -4,8 +4,13 @@ import 'package:stylish/mapPage.dart';
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   final AppBar appBar;
   final ThemeData theme;
+  final bool isMapNavigationEnabled;
 
-  const MainAppBar({super.key, required this.appBar, required this.theme});
+  const MainAppBar(
+      {super.key,
+      required this.appBar,
+      required this.theme,
+      this.isMapNavigationEnabled = false});
 
   @override
   Widget build(BuildContext context) {
@@ -16,18 +21,19 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: theme.appBarTheme.backgroundColor,
       shadowColor: theme.appBarTheme.shadowColor,
       actions: [
-        Padding(
-            padding: const EdgeInsets.only(right: 10.0),
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => MapPage()));
-              },
-              child: const Icon(
-                Icons.map,
-                size: 26.0,
-              ),
-            ))
+        if (isMapNavigationEnabled)
+          Padding(
+              padding: const EdgeInsets.only(right: 10.0),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => MapPage()));
+                },
+                child: const Icon(
+                  Icons.map,
+                  size: 26.0,
+                ),
+              ))
       ],
     );
   }
