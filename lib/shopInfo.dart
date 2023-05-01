@@ -23,8 +23,11 @@ class MarkerGenerator {
 }
 
 class ShopGenerator {
+  static ShopInfo mainOffice =
+      ShopInfo('MainOffice', '總店', 25.0384847, 121.5297953);
+
   List<ShopInfo> offices = [
-    ShopInfo('MainOffice', '總店', 25.0384847, 121.5297953),
+    mainOffice,
     ShopInfo('XinyiBranch', '信義分店', 25.0424777, 121.5623045),
     ShopInfo('FuxingBranch', '復興分店', 25.0520785, 121.5414341),
     ShopInfo('RenaiBranch', '仁愛分店', 25.0296587, 121.525987)

@@ -16,7 +16,7 @@ class _MapPageState extends State<MapPage> {
   final LatLng _center = const LatLng(25.0384847, 121.5297953);
   final List<ShopInfo> _shops = ShopGenerator().offices;
 
-  ShopInfo? selectedShop;
+  ShopInfo selectedShop = ShopGenerator.mainOffice;
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
