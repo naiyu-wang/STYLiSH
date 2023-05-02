@@ -20,7 +20,11 @@ import GoogleMaps
 
         TPDSetup.setWithAppId(Int32(TapPayInfo.appId), withAppKey: TapPayInfo.appKey, with: TPDServerType.sandBox)
 
-        GMSServices.provideAPIKey("AIzaSyBxFLATIxDioWTJFKrZ56ibWNxbuJNrcEY")
+         if let path = Bundle.main.path(forResource: "Key", ofType: "plist") {
+             let plist = NSDictionary(contentsOfFile: path)
+             let key: String = plist?["google_map_key"] as? String ?? "unknown"
+             GMSServices.provideAPIKey(key)
+         }
 
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }

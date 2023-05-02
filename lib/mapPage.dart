@@ -49,10 +49,9 @@ class _MapPageState extends State<MapPage> {
                       });
                     },
                     style: ElevatedButton.styleFrom(
-                        backgroundColor:
-                            _shops[index].id == (selectedShop?.id ?? 'null')
-                                ? theme.highlightColor
-                                : null),
+                        backgroundColor: _shops[index].id == selectedShop.id
+                            ? theme.highlightColor
+                            : null),
                     icon: const Icon(Icons.home_work),
                     label: Text(_shops[index].title));
               },
@@ -70,7 +69,7 @@ class _MapPageState extends State<MapPage> {
               markers: [
                 for (var shop in _shops)
                   MarkerGenerator().generateMarker(shop,
-                      isSelected: shop.id == (selectedShop?.id ?? 'null'))
+                      isSelected: shop.id == selectedShop.id)
               ].toSet(),
             ),
           )

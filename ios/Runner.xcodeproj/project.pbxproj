@@ -11,6 +11,7 @@
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
 		602FED612A0015FD008C5ADB /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 602FED602A0015FD008C5ADB /* SafariServices.framework */; };
 		602FED632A00160A008C5ADB /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 602FED622A00160A008C5ADB /* WebKit.framework */; };
+		602FED652A0135D8008C5ADB /* Key.plist in Resources */ = {isa = PBXBuildFile; fileRef = 602FED642A0135D8008C5ADB /* Key.plist */; };
 		607E445929F6FDCF009C99F7 /* TPDirect.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 607E445829F6FDCE009C99F7 /* TPDirect.xcframework */; };
 		607E445A29F6FDCF009C99F7 /* TPDirect.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 607E445829F6FDCE009C99F7 /* TPDirect.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		607E445C29F6FEED009C99F7 /* StaticResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607E445B29F6FEEC009C99F7 /* StaticResource.swift */; };
@@ -44,6 +45,7 @@
 		5577E9DDD8AB99C20E984211 /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		602FED602A0015FD008C5ADB /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		602FED622A00160A008C5ADB /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		602FED642A0135D8008C5ADB /* Key.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Key.plist; sourceTree = "<group>"; };
 		607E445829F6FDCE009C99F7 /* TPDirect.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = TPDirect.xcframework; path = ../../../../Downloads/TPDirect.xcframework; sourceTree = "<group>"; };
 		607E445B29F6FEEC009C99F7 /* StaticResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticResource.swift; sourceTree = "<group>"; };
 		607E445D29F70017009C99F7 /* TappayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappayViewController.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				97C146FD1CF9000F007C117D /* Assets.xcassets */,
 				97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */,
 				97C147021CF9000F007C117D /* Info.plist */,
+				602FED642A0135D8008C5ADB /* Key.plist */,
 				1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */,
 				1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */,
 				74858FAE1ED2DC5600515810 /* AppDelegate.swift */,
@@ -209,6 +212,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */,
+				602FED652A0135D8008C5ADB /* Key.plist in Resources */,
 				3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */,
 				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
 				97C146FC1CF9000F007C117D /* Main.storyboard in Resources */,
