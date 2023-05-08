@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:stylish/customServicePage.dart';
 import 'package:stylish/mapPage.dart';
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   final AppBar appBar;
   final ThemeData theme;
   final bool isMapNavigationEnabled;
+  final bool isCustomServiceEnabled;
 
   const MainAppBar(
       {super.key,
       required this.appBar,
       required this.theme,
-      this.isMapNavigationEnabled = false});
+      this.isMapNavigationEnabled = false,
+      this.isCustomServiceEnabled = false});
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +34,23 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
                 },
                 child: const Icon(
                   Icons.map,
+                  size: 26.0,
+                ),
+              )),
+        if (isCustomServiceEnabled)
+          Padding(
+              padding: const EdgeInsets.only(right: 20.0),
+              child: GestureDetector(
+                onTap: () {
+                  print('call custom service');
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              CustomerServicePage(host: '127.0.0.1')));
+                },
+                child: const Icon(
+                  Icons.phone,
                   size: 26.0,
                 ),
               ))

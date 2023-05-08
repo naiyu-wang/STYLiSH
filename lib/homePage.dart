@@ -75,6 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(),
         theme: theme,
         isMapNavigationEnabled: true,
+        isCustomServiceEnabled: true,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
